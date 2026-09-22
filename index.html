@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TikTok Downloader</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: #cbd5e1;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    input {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      font-size: 16px;
+      margin-bottom: 15px;
+      direction: ltr;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #ec4899;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #message {
+      margin-top: 20px;
+      color: #cbd5e1;
+      min-height: 25px;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">🎵</div>
+
+    <h1>TikTok Downloader</h1>
+
+    <p class="subtitle">
+      حمّل فيديوهات TikTok بسهولة
+    </p>
+
+    <div class="box">
+
+      <input
+        id="url"
+        type="url"
+        placeholder="ضع رابط فيديو TikTok هنا"
+        autocomplete="off"
+      >
+
+      <button id="downloadBtn" onclick="downloadVideo()">
+        تحميل الفيديو
+      </button>
+
+      <div id="message"></div>
+
+    </div>
+
+    <div class="footer">
+      استخدم الخدمة فقط مع المحتوى الذي تملك حق تنزيله أو إعادة استخدامه.
+    </div>
+
+  </div>
+
+  <script>
+    async function downloadVideo() {
+
+      const input = document.getElementById("url");
+      const button = document.getElementById("downloadBtn");
+      const message = document.getElementById("message");
+
+      const url = input.value.trim();
+
+      if (!url) {
+        message.textContent = "من فضلك ضع رابط الفيديو أولاً.";
+        return;
+      }
+
+      if (!url.includes("tiktok.com")) {
+        message.textContent = "من فضلك أدخل رابط TikTok صحيح.";
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "جاري المعالجة...";
+      message.textContent = "جاري تجهيز الفيديو...";
+
+      try {
+
+        /*
+          سيتم ربط هذا الجزء بالـ Backend لاحقاً.
+
+          مثال:
+          const response = await fetch("/api/download", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ url })
+          });
+
+          const data = await response.json();
+
+          if (data.downloadUrl) {
+            window.location.href = data.downloadUrl;
+          }
+        */
+
+        setTimeout(() => {
+          message.textContent =
+            "واجهة الموقع جاهزة. سنضيف نظام التحميل في الخطوة التالية.";
+          button.disabled = false;
+          button.textContent = "تحميل الفيديو";
+        }, 1200);
+
+      } catch (error) {
+
+        message.textContent =
+          "حدث خطأ، حاول مرة أخرى.";
+
+        button.disabled = false;
+        button.textContent = "تحميل الفيديو";
+      }
+    }
+  </script>
+
+</body>
+</html>
