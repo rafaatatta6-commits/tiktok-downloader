@@ -8,6 +8,6 @@
   "dependencies": {
     "express": "^5.1.0",
     "cors": "^2.8.5",
-    "yt-dlp-exec": "^3.0.0"
+    "yt-dlp-exec": "^1.0.2"
   }
 }
